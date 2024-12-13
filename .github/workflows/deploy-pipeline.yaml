@@ -56,7 +56,7 @@ jobs:
         runs: mkdir -p function/docs
           
       - name: Convert md to html
-        uses: docker://pandoc/core
+        uses: docker://pandoc/core:3.6-ubuntu
         with:
           args: userguide.md -t html -o function/docs/index.html
 

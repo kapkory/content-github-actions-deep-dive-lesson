@@ -52,16 +52,17 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
+      - name: Create docs folder
+        runs: mkdir function/docs
           
-      - name: Install libraries
-        run: |
-            cd function
-            pip install mkdocs mkdocs-material
-      - name: Build documentation
-        run: |
-            cd function/docs
-            mkdocs build
+      - name: Convert md to html
+        uses: docker://pandoc/core
+        with:
+          args: userguide.md -t html -o docs/index.html
+
+      - name: Deploy Site
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages

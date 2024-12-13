@@ -53,7 +53,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create docs folder
-        runs: mkdir function/docs
+        runs: mkdir -p function/docs
           
       - name: Convert md to html
         uses: docker://pandoc/core
@@ -66,4 +66,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./function/docs
           publish_branch: gh-pages
-          

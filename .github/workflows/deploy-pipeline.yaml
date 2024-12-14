@@ -61,8 +61,6 @@ jobs:
         with:
           args: userguide.md -t html -o function/docs/index.html
 
-      - name: Create workspace docs folder
-        run: mkdir -p /github/workspace/docs
 
       - name: Deploy Site
         uses: peaceiris/actions-gh-pages@v3

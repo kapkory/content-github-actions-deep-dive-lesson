@@ -47,13 +47,14 @@ jobs:
 
   documentation:
     runs-on: ubuntu-latest
+
     needs: lint
     steps:
       - name: Check out code
         uses: actions/checkout@v2
 
       - name: Create docs folder
-        runs: mkdir -p function/docs
+        run: mkdir -p function/docs
           
       - name: Convert md to html
         uses: docker://pandoc/core:3.6-ubuntu
